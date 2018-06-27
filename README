@@ -1,1 +1,14 @@
 FIFO implementation test
+
+
+https://hackaday.com/2015/10/29/embed-with-elliot-going-round-with-circular-buffers/
+
+As the FIFO is circular, size must be 
+size = wantedSize+1
+An index is not used when FIFO is consider FULL. 
+This implement is descibed in the previous link.
+To determine if the FIFO is full the test is to check if the write pointer (head) position
+can be increased without being equal to the read pointer (tail).
+To determine if the FIFO is empty, the test check if the read pointer(tail) is 
+equal to the write pointer (head). 
+
