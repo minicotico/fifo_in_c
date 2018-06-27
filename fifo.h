@@ -6,14 +6,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define true 1
-#define false 0
 
 
 /* Change the size of the fifo easily (assuming size is constant) */
-#define FIFO_SIZE	4
+#define FIFO_SIZE	5
 /* Change the type of data contained in the fifo easily */
 typedef unsigned char fifoType;
+
+enum{
+	false,
+	true,
+};
 
 struct s_fifo
 {
@@ -21,15 +24,16 @@ struct s_fifo
 	fifoType msgList[FIFO_SIZE];
 	int tail;//read position pointer
 	int head;//write position pointer
+	int nbData;
 };
 
 
 void init(int size);
-int push(fifoType* data);
-int checkData(int index, fifoType* data);
-void pop(fifoType* data);
-int isEmpty(void);
-int isFull(void);
+int fifo_push(fifoType* data);
+int fifo_checkData(int index, fifoType* data);
+int fifo_pop(fifoType* data);
+int fifo_isEmpty(void);
+int fifo_isFull(void);
 
 
 #endif //_FIFO_H_
