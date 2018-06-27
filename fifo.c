@@ -40,6 +40,9 @@ void init(int size)
 	memset(&fifo.msgList, 0, sizeof(fifoType)*FIFO_SIZE);
 }
 
+
+
+
 /**************************************************
 * NAME : fifo_push
 * BRIEF : push data into the fifo. Increase pointer position then write
@@ -68,6 +71,25 @@ int fifo_push(fifoType* data)
 	
 	return 0;
 }
+
+
+/**************************************************
+* NAME : fifo_forcePush
+* BRIEF : Push data weither FIFO is FULL, meaning popping data if necessary
+* IN : data to push
+* OUT : 1 on error, otherwise 0
+**************************************************/
+int fifo_forcePush(fifoType* data)
+{
+	fifoType lostData;
+	
+	while(fifo_push(data)){
+		fifo_pop(&lostData);
+	}
+
+	return 0;
+}
+
 
 /**************************************************
 * NAME : fifo_checkData
